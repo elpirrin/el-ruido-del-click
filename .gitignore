@@ -1,0 +1,11 @@
+# Node
+node_modules/
+dist/
+npm-debug.log
+
+# IDEs
+.idea/
+*.iml
+
+# Environment
+.env
