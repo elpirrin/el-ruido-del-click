@@ -1,0 +1,157 @@
+<div class="cart-container">
+
+  <!-- PASOS -->
+  <div class="checkout-steps">
+    <div class="step" [class.active]="currentStep === 1" (click)="currentStep = 1">
+      <div class="number">1</div>
+      <span>Carrito</span>
+    </div>
+    <div class="step" [class.active]="currentStep === 2" (click)="currentStep = 2">
+      <div class="number">2</div>
+      <span>Dirección</span>
+    </div>
+    <div class="step" [class.active]="currentStep === 3" (click)="currentStep = 3">
+      <div class="number">3</div>
+      <span>Envío</span>
+    </div>
+    <div class="step" [class.active]="currentStep === 4" (click)="currentStep = 4">
+      <div class="number">4</div>
+      <span>Pago</span>
+    </div>
+    <div class="step" [class.active]="currentStep === 5" (click)="currentStep = 5">
+      <div class="number">5</div>
+      <span>Resumen</span>
+    </div>
+  </div>
+
+  <!-- PASO 1: CARRITO -->
+  <ng-container *ngIf="currentStep === 1">
+    <div class="cart-content" *ngIf="cartItems.length > 0; else emptyCart">
+      <div class="cart-items">
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <img [src]="item.image" [alt]="item.name" class="item-image">
+          <div class="item-details">
+            <h3 class="item-name">{{ item.name }}</h3>
+            <p class="item-price">{{ item.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+          </div>
+          <div class="item-quantity">
+            <button class="qty-btn">-</button>
+            <span class="qty-value">{{ item.quantity }}</span>
+            <button class="qty-btn">+</button>
+          </div>
+          <div class="item-total">{{ (item.price * item.quantity) | currency:'EUR':'symbol':'1.2-2' }}</div>
+          <button class="remove-btn" title="Eliminar">✕</button>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>{{ subtotal | currency:'EUR' }}</span>
+        </div>
+        <div class="summary-row">
+          <span>IVA (21%)</span>
+          <span>{{ tax | currency:'EUR' }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>{{ total | currency:'EUR' }}</span>
+        </div>
+        <button class="checkout-btn" (click)="currentStep = 2">Siguiente paso</button>
+      </div>
+      
+    </div>
+
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <h3>Tu carrito está vacío</h3>
+        <p>Añade productos para continuar</p>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <!-- PASO 2: DIRECCIÓN -->
+  <ng-container *ngIf="currentStep === 2">
+    <section class="checkout-step">
+      <h2>Dirección de envío</h2>
+      <!-- ⚠️ USAR REACTIVE FORM AQUÍ ⚠️ -->
+      <div class="form-grid">
+        <input type="text" placeholder="Nombre completo">
+        <input type="text" placeholder="Dirección">
+        <input type="text" placeholder="Ciudad">
+        <input type="text" placeholder="Código Postal">
+        <input type="text" placeholder="Provincia">
+        <input type="text" placeholder="Teléfono">
+      </div>
+
+      <button class="checkout-btn" (click)="currentStep = 3">Siguiente paso</button>
+    </section>
+  </ng-container>
+
+  <!-- PASO 3: ENVÍO -->
+  <ng-container *ngIf="currentStep === 3">
+    <section class="checkout-step">
+      <h2>Opciones de entrega</h2>
+      <div class="options">
+        <div class="option selected">
+          <h3>Envío estándar</h3>
+          <p>Entrega en 3-5 días laborables</p>
+          <span>Gratis</span>
+        </div>
+        <div class="option">
+          <h3>Envío express</h3>
+          <p>Entrega en 24/48h</p>
+          <span>4,99 €</span>
+        </div>
+      </div>
+
+      <button class="checkout-btn" (click)="currentStep = 4">Siguiente paso</button>
+    </section>
+  </ng-container>
+
+  <!-- PASO 4: PAGO -->
+  <ng-container *ngIf="currentStep === 4">
+    <section class="checkout-step">
+      <h2>Método de pago</h2>
+      <div class="payment-methods">
+        <div class="payment-card selected">
+          <img src="assets/images/cart/visa-logo-carrito.png" alt="Visa">
+        </div>
+      </div>
+      <div class="card-form">
+        <div class="card-row">
+          <label>Número de tarjeta</label>
+          <div class="fake-input">1234 5678 9012 3456</div>
+        </div>
+        <div class="card-grid">
+          <div>
+            <label>Fecha de expiración</label>
+            <div class="fake-input">MM / AA</div>
+          </div>
+          <div>
+            <label>CVC</label>
+            <div class="fake-input">123</div>
+          </div>
+        </div>
+        <p class="stripe-note">🔒 Pago seguro gestionado por <strong>Stripe</strong></p>
+      </div>
+
+      <button class="checkout-btn" (click)="currentStep = 5">Siguiente paso</button>
+    </section>
+  </ng-container>
+
+  <!-- PASO 5: RESUMEN -->
+  <ng-container *ngIf="currentStep === 5">
+    <section class="checkout-step">
+      <h2>Resumen del pedido</h2>
+      <ul class="summary-list">
+        <li>Productos: <strong>{{ subtotal | currency:'EUR' }}</strong></li>
+        <li>Envío: <strong>Gratis</strong></li>
+        <li>IVA: <strong>{{ tax | currency:'EUR' }}</strong></li>
+        <li class="total">Total: <strong>{{ total | currency:'EUR' }}</strong></li>
+      </ul>
+      <button class="checkout-btn" routerLink="">Confirmar pedido</button>
+    </section>
+  </ng-container>
+
+</div>

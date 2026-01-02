@@ -1,7 +1,13 @@
 # Node
 node_modules/
+# Angular
 dist/
+
 npm-debug.log
+db/data/
+
+# Java
+target/
 
 # IDEs
 .idea/

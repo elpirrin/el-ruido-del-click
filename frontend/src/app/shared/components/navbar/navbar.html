@@ -1,0 +1,103 @@
+<nav>
+  <!-- toggle móvil -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">
+    <i class="material-icons">menu</i>
+  </label>
+
+  <ul class="menu">
+    <!-- LOGO -->
+    <li>
+      <a class="logo" (click)="cerrarSubmenuClick()" routerLink="">
+        <img src="assets/images/logo-el-ruido-del-click.png" alt="logo-el-ruido-del-click"/>
+      </a>
+    </li>
+
+    <!-- PERIFÉRICOS -->
+    <li class="submenu">
+      <a
+        (click)="toggleSubmenu('perifericos')"
+        [class.active]="estaActivo('perifericos')"
+      >
+        <i class="material-icons">devices</i>
+        Periféricos
+      </a>
+
+      <ul class="submenu-items" *ngIf="estaActivo('perifericos')">
+        <li><a (click)="cerrarSubmenuClick()" routerLink="ratones">Ratones</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Teclados</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Monitores</a></li>
+      </ul>
+    </li>
+
+    <!-- ORDENADORES -->
+    <li class="submenu">
+      <a
+        (click)="toggleSubmenu('ordenadores')"
+        [class.active]="estaActivo('ordenadores')"
+      >
+        <i class="material-icons">desktop_windows</i>
+        Ordenadores
+      </a>
+
+      <ul class="submenu-items" *ngIf="estaActivo('ordenadores')">
+        <li><a (click)="cerrarSubmenuClick()">Sobremesa</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Portátil</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Gaming</a></li>
+      </ul>
+    </li>
+
+    <!-- COMPONENTES -->
+    <li class="submenu">
+      <a
+        (click)="toggleSubmenu('componentes')"
+        [class.active]="estaActivo('componentes')"
+      >
+        <i class="material-icons">memory</i>
+        Componentes
+      </a>
+
+      <ul class="submenu-items" *ngIf="estaActivo('componentes')">
+        <li><a (click)="cerrarSubmenuClick()">Placas Base</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Tarjetas Gráficas</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Procesadores</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Discos Duros</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Refrigeración</a></li>
+        <li><a (click)="cerrarSubmenuClick()">RAM</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Torres y Cajas</a></li>
+        <li><a (click)="cerrarSubmenuClick()">Fuentes de alimentación</a></li>
+      </ul>
+    </li>
+
+    <!-- BARRA DE BÚSQUEDA -->
+    <li class="search-item">
+      <input type="search" placeholder="Buscar..." class="search-bar">
+      <span class="search-icon">
+        <i class="material-icons">search</i>
+      </span>
+    </li>
+
+    <!-- CARRITO -->
+    <li>
+      <a
+        (click)="toggleSubmenu('carrito')"
+        [class.active]="estaActivo('carrito')"
+        routerLink="carrito">
+        <i class="material-icons">shopping_cart</i>
+        Carrito
+      </a>
+    </li>
+
+    <!-- CUENTA -->
+    <li>
+      <a
+        (click)="toggleSubmenu('cuenta')"
+        [class.active]="estaActivo('cuenta')"
+        routerLink="mi-cuenta"
+      >
+        <i class="material-icons">account_circle</i>
+        Mi cuenta
+      </a>
+    </li>
+  </ul>
+</nav>

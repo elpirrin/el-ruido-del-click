@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql #aqui se guarda la db.
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-el-ruido-del-click
+    restart: always
+    ports:
+      - "8081:80"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+  backend:
+    build: ./backend
+    container_name: spring-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    container_name: angular-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend

@@ -1,0 +1,50 @@
+<section class="hero-principal">
+  <!-- TÍTULO -->
+  <div class="hero-title">
+    <h1>
+      Expertos en tecnología
+      <span>con un servicio de 5 estrellas</span>
+    </h1>
+  </div>
+
+  <!-- CARRUSEL -->
+  <div class="carousel">
+    <!-- Flecha izquierda -->
+    <button class="arrow left" (click)="prevSlide()">
+      <i class="material-icons">chevron_left</i>
+    </button>
+
+    <!-- Slides -->
+    <div class="carousel-window">
+      <div
+        class="carousel-track"
+        [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+      >
+        <div class="carousel-item" *ngFor="let slide of slides">
+          <img [src]="slide" alt="slide" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Flecha derecha -->
+    <button class="arrow right" (click)="nextSlide()">
+      <i class="material-icons">chevron_right</i>
+    </button>
+  </div>
+
+  <div class="hero-title-ofertas">
+    <h1>
+      ¡Consigue las ofertas más TOP en estas fechas!
+    </h1>
+  </div>
+
+</section>
+<app-product-grid [productos]="productos"></app-product-grid>
+<section class="hero">
+<div class="hero-title-ofertas">
+    <h1 class="reacondicionado-title">
+      Reacondicionados
+    </h1>
+</div>
+</section>
+<app-product-grid [productos]="productosReacondicionados"></app-product-grid>

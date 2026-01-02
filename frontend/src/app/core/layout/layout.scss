@@ -1,0 +1,11 @@
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-content {
+  flex: 1;
+  padding-top: 80px;
+  background-color: var(--gray-300);
+}

@@ -1,0 +1,25 @@
+:root {
+  /* Backgrounds */
+  --bg-app: var(--gray-50);
+  --bg-navbar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-hover: var(--gray-100);
+
+  /* Text */
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border-default: var(--gray-200);
+  --border-focus: var(--color-primary);
+
+  /* Actions */
+  --action-primary-bg: var(--color-primary);
+  --action-primary-bg-hover: var(--color-primary-dark);
+  --action-primary-text: #ffffff;
+
+  /* Premium / Gold */
+  --border-premium: var(--color-gold);
+  --text-premium: var(--color-gold);
+}

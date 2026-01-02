@@ -1,0 +1,66 @@
+<section class="perifericos-page">
+
+  <!-- FILTROS (aside) -->
+  <!-- Añadimos la clase [class.open] para móvil -->
+  <aside class="filters" [class.open]="mobileFiltersOpen" role="region" aria-label="Filtros">
+    <!-- Botón de cerrar visible solo en móvil -->
+    <button class="filters-close" (click)="closeFilters()" aria-label="Cerrar filtros">✕</button>
+
+    <h3>Filtrar por</h3>
+
+    <div class="filter-group">
+      <h4>Marca</h4>
+      <label><input type="checkbox"> Logitech</label>
+      <label><input type="checkbox"> Razer</label>
+      <label><input type="checkbox"> Corsair</label>
+      <label><input type="checkbox"> SteelSeries</label>
+      <label><input type="checkbox"> HyperX</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Precio</h4>
+      <label><input type="checkbox"> Menos de 30€</label>
+      <label><input type="checkbox"> 30€ – 60€</label>
+      <label><input type="checkbox"> 60€ – 100€</label>
+      <label><input type="checkbox"> Más de 100€</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Conectividad</h4>
+      <label><input type="checkbox"> Cable</label>
+      <label><input type="checkbox"> Inalámbrico</label>
+    </div>
+  </aside>
+
+  <div class="filters-backdrop" *ngIf="mobileFiltersOpen" (click)="closeFilters()"></div>
+
+  <!-- LISTADO -->
+  <main class="products">
+    <div class="products-header">
+      <button class="mobile-filters-btn" (click)="toggleFilters()" aria-expanded="{{mobileFiltersOpen}}">
+        ☰ Filtrar
+      </button>
+
+      <div class="sort-buttons">
+        <span class="sort-label">Ordenar por:</span>
+        <button class="sort-btn" [class.active]="orden === 'novedades'" (click)="orden = 'novedades'">
+          Novedades
+        </button>
+        <button class="sort-btn" [class.active]="orden === 'barato'" (click)="orden = 'barato'">
+          Más barato
+        </button>
+        <button class="sort-btn" [class.active]="orden === 'caro'" (click)="orden = 'caro'">
+          Más caro
+        </button>
+        <button class="sort-btn offer" [class.active]="orden === 'oferta'" (click)="orden = 'oferta'">
+          Oferta
+        </button>
+      </div>
+    </div>
+
+    <app-product-grid
+      [productos]="perifericos">
+    </app-product-grid>
+  </main>
+
+</section>

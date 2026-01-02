@@ -1,0 +1,17 @@
+<!-- SECCION PRODUCTOS EN OFERTA -->
+
+<section class="products">
+  <div class="products-grid">
+    <div class="product-card" [ngClass]="{'reacondicionado': producto.reacondicionado}" *ngFor="let producto of productos">
+    <div class="product-image">
+      <img [src]="producto.imagen" [alt]="producto.nombre" />
+    </div>
+
+    <div class="product-info">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <span class="price">{{ producto.precio }}</span>
+    </div>
+</div>
+  </div>
+</section>
