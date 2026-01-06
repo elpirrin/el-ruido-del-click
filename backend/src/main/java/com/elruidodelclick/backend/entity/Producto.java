@@ -1,10 +1,14 @@
 package com.elruidodelclick.backend.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
+@Getter
+@Setter
 @Entity//esto le dice que representa la clase una tabla de la bd.
 @Table(name = "producto")//opcional, si no lo pones, pone el nombre de la clase por defecto.
 @Inheritance(strategy = InheritanceType.JOINED)//Herencia: Esta clase tiene hijas y cada una tiene su propia tabla
@@ -33,6 +37,8 @@ public  abstract class Producto {//abstract significa que no se puede hacer new 
     private Categoria categoria;
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
+    @Column(nullable = false)
+    private Boolean reacondicionado;
 
     // Constructor vacío obligatorio para JPA
     protected Producto() {//protected permite herencia y evita que se use en otros lados.
