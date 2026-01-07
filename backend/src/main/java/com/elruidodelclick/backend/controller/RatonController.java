@@ -1,13 +1,15 @@
 package com.elruidodelclick.backend.controller;
 
+import com.elruidodelclick.backend.dto.raton.RatonRequest;
+import com.elruidodelclick.backend.dto.raton.RatonResponse;
 import com.elruidodelclick.backend.entity.Raton;
 import com.elruidodelclick.backend.service.RatonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/mouses")
 public class RatonController {
     private final RatonService ratonService;
 
@@ -15,9 +17,14 @@ public class RatonController {
         this.ratonService = ratonService;
     }
 
+    // POST para crear un ratón
+    @PostMapping
+    public RatonResponse createMouse(@RequestBody RatonRequest request){
+        return ratonService.createMouse(request);
+    }
     // Endpoint para mostrar todos los ratones
-    @GetMapping("/mouses")
-    public List<Raton> getAllMousesController(){
-        return ratonService.getAllMouse();
+    @GetMapping
+    public List<RatonResponse> getAllMouses(){
+        return ratonService.getAllMouses();
     }
 }

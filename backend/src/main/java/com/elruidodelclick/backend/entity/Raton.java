@@ -17,6 +17,6 @@ public class Raton extends Periferico{
 
     @Column(nullable = false)
     private Boolean inalambrico;
-    protected Raton() {
+    public Raton() {
     }
 }
